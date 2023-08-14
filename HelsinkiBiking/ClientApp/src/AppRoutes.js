@@ -1,5 +1,5 @@
-import { Counter } from "./components/Counter";
-import { FetchData } from "./components/FetchData";
+import { Test1 } from "./components/Test1";
+import { Test2 } from "./components/Test2";
 import { Home } from "./components/Home";
 import RankItemsContainer from "./components/RankItemsContainer"
 import MovieImageArr from "./components/MovieImages.js";
@@ -11,12 +11,12 @@ const AppRoutes = [
     element: <Home />
   },
   {
-    path: '/counter',
-    element: <Counter />
+    path: '/Test1',
+    element: <Test1 />
   },
   {
-    path: '/fetch-data',
-    element: <FetchData />
+    path: '/Test2',
+    element: <Test2 />
     },
     {
         path: '/rank-movies',
