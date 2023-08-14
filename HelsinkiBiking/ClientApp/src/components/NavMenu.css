@@ -4,6 +4,11 @@
   word-break: break-all;
 }
 
+.bike-logo {
+    height: 4em;
+    margin: 0px 20px 0px 20px;
+}
+
 html {
   font-size: 14px;
 }
