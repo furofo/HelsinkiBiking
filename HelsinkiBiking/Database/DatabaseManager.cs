@@ -48,8 +48,9 @@
                         }
                     }
                 }
+                connection.Close();
             }
-
+           
             return stations;
         }
     }

@@ -1,36 +1,22 @@
+using HelsinkiBiking.Database;
 using MySql.Data.MySqlClient;
 string connectionString = "Server=localhost;Port=3306;Database=testhelsinkidatabase;Uid=root;Pwd=";
 try
 {
-    using (MySqlConnection connection = new MySqlConnection(connectionString))
+    DatabaseManager dbManager = new DatabaseManager(connectionString);
+    List<Station> stations = dbManager.GetStations();
+
+    foreach (Station station in stations)
     {
-        connection.Open();
-
-        // Execute a SELECT queryd
-        string query = "SELECT * FROM StationsList";
-        using (MySqlCommand command = new MySqlCommand(query, connection))
-        {
-            using (MySqlDataReader reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    // Access data using reader["column_name"] or reader[index]
-                    int fid = reader.GetInt32("FID");
-                    int id = reader.GetInt32("ID");
-                    string nimi = reader.GetString("Nimi");
-                    // ... and so on
-
-                    // Process the retrieved data
-                    Console.WriteLine($"FID: {fid}, ID: {id}, Nimi: {nimi}");
-                }
-            }
-        }
+        Console.WriteLine($"FID: {station.FID}, ID: {station.ID}, Nimi: {station.Nimi}");
+        // You can access other properties of the Station object here
     }
 }
 catch (Exception ex)
 {
     Console.WriteLine("An error occurred: " + ex.Message);
 }
+        
 
 var builder = WebApplication.CreateBuilder(args);
 
