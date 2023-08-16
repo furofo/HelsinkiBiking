@@ -12,7 +12,7 @@
             _connectionString = connectionString;
         }
 
-        public List<Station> GetStations()
+        public virtual List<Station> GetStations()
         {
             List<Station> stations = new List<Station>();
 
