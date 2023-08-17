@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-export class Test1 extends Component {
-  static displayName = "Test1";
+export class JourneyList extends Component {
+  static displayName = "JourneyList";
 
   constructor(props) {
     super(props);
@@ -13,7 +13,7 @@ export class Test1 extends Component {
   render() {
     return (
       <div>
-        <h1>Test1</h1>
+        <h1>JourneyList</h1>
 
         <p>This is a simple example of a React component.</p>
 

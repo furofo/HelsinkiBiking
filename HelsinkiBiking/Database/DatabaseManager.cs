@@ -45,6 +45,8 @@
                    );
 
                             stations.Add(station);
+                            Console.Write("stations list length is on next line:");
+                            Console.WriteLine(stations.Count);
                         }
                     }
                 }

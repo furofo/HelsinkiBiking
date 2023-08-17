@@ -1,4 +1,4 @@
-import { Test1 } from "./components/Test1";
+import { JourneyList } from "./components/JourneyList";
 import { Test2 } from "./components/Test2";
 import { Home } from "./components/Home";
 import RankItemsContainer from "./components/RankItemsContainer"
@@ -11,8 +11,8 @@ const AppRoutes = [
     element: <Home />
   },
   {
-    path: '/Test1',
-    element: <Test1 />
+    path: '/JourneyList',
+    element: <JourneyList />
   },
   {
     path: '/Test2',
