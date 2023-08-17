@@ -16,7 +16,22 @@ catch (Exception ex)
 {
     Console.WriteLine("An error occurred: " + ex.Message);
 }
-        
+
+try
+{
+    DatabaseManager dbManager = new DatabaseManager(connectionString);
+    List<Journey> journeys = dbManager.GetJourneys();
+
+    foreach (Journey journey in journeys)
+    {
+        Console.WriteLine($"Departure: {journey.Departure}, ReturnDate: {journey.ReturnDate}, Departure Station: {journey.DepartureStationName}");
+        // You can access other properties of the Journey object here
+    }
+}
+catch (Exception ex)
+{
+    Console.WriteLine("An error occurred: " + ex.Message);
+}
 
 var builder = WebApplication.CreateBuilder(args);
 
