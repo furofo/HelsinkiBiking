@@ -1,6 +1,7 @@
 using HelsinkiBiking.Database;
 using MySql.Data.MySqlClient;
 string connectionString = "Server=localhost;Port=3306;Database=testhelsinkidatabase;Uid=root;Pwd=";
+
 try
 {
     DatabaseManager dbManager = new DatabaseManager(connectionString);
@@ -34,8 +35,24 @@ catch (Exception ex)
 }
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddSingleton(connectionString);
 
+builder.Services.AddSingleton<DatabaseManager>();
 // Add services to the container.
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins("https://localhost:44446")  // Replace with your React app's domain/port
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
+});
+
+// ...
+
+
+
 
 builder.Services.AddControllersWithViews();
 
@@ -51,11 +68,13 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseCors();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers(); // Make sure controllers are mapped
+});
 
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
 
 app.MapFallbackToFile("index.html");
 

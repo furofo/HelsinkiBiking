@@ -13,9 +13,9 @@ export default class App extends Component {
         <Routes>
           {AppRoutes.map((route, index) => {
               const { element, ...rest } = route;
-              console.log("element is ...", element);
-              console.log("Route found ... ", <Route key={index} {...rest} element={element} />)
-              console.log("Rest is.....", rest);
+              //console.log("element is ...", element);
+             // console.log("Route found ... ", <Route key={index} {...rest} element={element} />)
+              //console.log("Rest is.....", rest);
               return <Route key={index} element={element} {...rest} />;
           })}
         </Routes>
