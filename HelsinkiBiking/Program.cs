@@ -1,7 +1,11 @@
 using HelsinkiBiking.Database;
 using MySql.Data.MySqlClient;
-string connectionString = "Server=localhost;Port=3306;Database=testhelsinkidatabase;Uid=root;Pwd=";
 
+
+var builder = WebApplication.CreateBuilder(args);
+// string connectionString = builder.Configuration.GetConnectionString("HelsinkiDatabase");
+DotNetEnv.Env.Load();
+string connectionString = System.Environment.GetEnvironmentVariable("ConnectionStrings__HelsinkiDatabase");
 try
 {
     DatabaseManager dbManager = new DatabaseManager(connectionString);
@@ -33,8 +37,6 @@ catch (Exception ex)
 {
     Console.WriteLine("An error occurred: " + ex.Message);
 }
-
-var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton(connectionString);
 
 builder.Services.AddSingleton<DatabaseManager>();
