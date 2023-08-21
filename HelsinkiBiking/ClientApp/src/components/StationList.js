@@ -1,7 +1,10 @@
 import React, { Component, useState, useEffect } from 'react';
 
+
+
 function StationListContent() {
     const [stations, setStations] = useState([]);
+    const [selectedStation, setSelectedStation] = useState(null);
 
     useEffect(() => {
         // Assuming your API runs on the same server & port as your React app
@@ -17,20 +20,31 @@ function StationListContent() {
                 setStations(data);
             });
     }, []); // Note the empty dependency array here.
-
-    return (
-        <div>
-            <h2>List of Stations</h2>
+    const handleStationClick = (station) => {
+        setSelectedStation(station);
+    };
+    if (selectedStation) {
+        return (
+            <div>
+                {selectedStation.name} - {selectedStation.adress}
+                <button onClick={() => setSelectedStation(null)}>Back to list</button>
+            </div>
+        );
+    } else {
+        return (
             <ul>
                 {stations.map(station => (
-                    <li key={station.fid}
-                        onClick={() => console.log(`${station.name} was clicked`)}>
+                    <li
+                        key={station.fid}
+                        onClick={() => handleStationClick(station)}>
                         {station.name} - {station.adress}
                     </li>
                 ))}
-            </ul>
-        </div>
-    );
+            </ul>);
+
+    }
+
+
 }
 
 export class StationList extends Component {
