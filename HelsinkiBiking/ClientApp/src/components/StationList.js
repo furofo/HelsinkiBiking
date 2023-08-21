@@ -23,7 +23,8 @@ function StationListContent() {
             <h2>List of Stations</h2>
             <ul>
                 {stations.map(station => (
-                    <li key={station.fid}>
+                    <li key={station.fid}
+                        onClick={() => console.log(`${station.name} was clicked`)}>
                         {station.name} - {station.adress}
                     </li>
                 ))}
