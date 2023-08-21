@@ -1,5 +1,5 @@
 import { JourneyList } from "./components/JourneyList";
-import { Test2 } from "./components/Test2";
+import { StationList } from "./components/StationList";
 import { Home } from "./components/Home";
 import RankItemsContainer from "./components/RankItemsContainer"
 import MovieImageArr from "./components/MovieImages.js";
@@ -15,8 +15,8 @@ const AppRoutes = [
     element: <JourneyList />
   },
   {
-    path: '/Test2',
-    element: <Test2 />
+    path: '/StationList',
+    element: <StationList />
     },
     {
         path: '/rank-movies',
