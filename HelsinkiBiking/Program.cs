@@ -22,9 +22,10 @@ try
     Console.WriteLine($"Count of departure stations for Kustaankatu is: {DepartureStationCount}"); // should be 4806
     Console.WriteLine($"Count of departure stations for Tenholantie is: {NewDepartureStationCount}"); // should be 2906
     string[] listOfTableNames = dbManager.GetAllTableNames();
-    for (int i = 0; i < listOfTableNames.Length; i++)
+    List <string>listOfTableNamesNotStationList = dbManager.returnTableNamesThatAreNotStationList(listOfTableNames);
+    for (int i = 0; i < listOfTableNamesNotStationList.Count; i++)
     {
-        Console.WriteLine($"Table names in datbase are {listOfTableNames[i]}");
+        Console.WriteLine($"Table names in datbase are {listOfTableNamesNotStationList[i]}");
 
     }
     dbManager.GetAllJourneyDates();
