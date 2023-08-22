@@ -17,8 +17,10 @@ try
         // You can access other properties of the Station object here
     }
 
-    int DepartureStationCount = dbManager.GetDepartureStationTotal();
-    Console.WriteLine($"Count of departure stations is: {DepartureStationCount}");
+    int DepartureStationCount = dbManager.GetDepartureStationTotal("Kustaankatu");
+    int NewDepartureStationCount = dbManager.GetDepartureStationTotal("Tenholantie");
+    Console.WriteLine($"Count of departure stations for Kustaankatu is: {DepartureStationCount}"); // should be 4806
+    Console.WriteLine($"Count of departure stations for Tenholantie is: {NewDepartureStationCount}"); // should be 2906
 }
 catch (Exception ex)
 {

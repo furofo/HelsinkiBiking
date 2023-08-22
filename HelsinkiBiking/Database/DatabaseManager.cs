@@ -93,7 +93,7 @@
             return journeys;
         }
 
-        public virtual int GetDepartureStationTotal()
+        public virtual int GetDepartureStationTotal(string stationName)
         {
             int count = 0;
 
@@ -105,7 +105,7 @@
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@stationName", "Kustaankatu");
+                    command.Parameters.AddWithValue("@stationName", stationName);
 
                     object result = command.ExecuteScalar();
                     if (result != null)
