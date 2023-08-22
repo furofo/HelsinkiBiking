@@ -29,7 +29,12 @@ try
 
     }
     dbManager.GetAllJourneyDates();
-    
+
+    List <Journey> allJourneys = dbManager.GetAllJourneys(listOfTableNamesNotStationList);
+    for(int i = 0; i < allJourneys.Count; i++)
+    {
+        Console.WriteLine($"All journeys here {allJourneys[i].DepartureStationName}");
+    }
 }
       
 catch (Exception ex)
@@ -47,6 +52,7 @@ try
         Console.WriteLine($"Departure: {journey.Departure}, ReturnDate: {journey.ReturnDate}, Departure Station: {journey.DepartureStationName}");
         // You can access other properties of the Journey object here
     }
+
 }
 catch (Exception ex)
 {

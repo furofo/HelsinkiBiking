@@ -188,6 +188,53 @@
 
            
         }
+        public List<Journey> GetAllJourneys(List<string> tableNames)
+        {
+            List<Journey> allJourneys = new List<Journey>();
+
+            // We'll construct a list of subqueries, each selecting from one of the table names.
+            List<string> subqueries = new List<string>();
+
+            foreach (var tableName in tableNames)
+            {
+                // For each table name, create a SELECT statement
+                string subquery = $"SELECT * FROM `{tableName}`";
+                subqueries.Add(subquery);
+            }
+
+            // Join the subqueries using UNION ALL and limit the result
+            string query = string.Join(" UNION ALL ", subqueries) + " LIMIT 10";
+
+            using (MySqlConnection connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Journey journey = new Journey(
+                                reader.GetDateTime("Departure"),
+                                reader.GetDateTime("ReturnDate"),
+                                reader.GetInt32("Departure_station_id"),
+                                reader.GetString("Departure_station_name"),
+                                reader.GetInt32("Return_station_id"),
+                                reader.GetString("Return_station_name"),
+                                reader.GetInt32("Covered_distance"),
+                                reader.GetString("Duration")
+                            );
+
+                            allJourneys.Add(journey);
+                        }
+                    }
+                }
+                connection.Close();
+            }
+
+            return allJourneys;
+        }
 
     }
 
