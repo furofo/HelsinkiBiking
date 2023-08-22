@@ -27,8 +27,10 @@ try
         Console.WriteLine($"Table names in datbase are {listOfTableNames[i]}");
 
     }
+    dbManager.GetAllJourneyDates();
     
 }
+      
 catch (Exception ex)
 {
     Console.WriteLine("An error occurred: " + ex.Message);

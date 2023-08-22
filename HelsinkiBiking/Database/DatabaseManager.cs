@@ -122,7 +122,7 @@
         public virtual string[] GetAllTableNames()
         {
             List<string> tableNames = new List<string>();
-
+        
             using (MySqlConnection connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
@@ -145,7 +145,52 @@
 
             return tableNames.ToArray();
         }
+
+        public List<string> returnTableNamesThatAreNotStationList(string[] tableNames)
+        {
+            List<string> tableNamesThatAreNotStationList = new List<string>();
+            for(int i = 0; i < tableNames.Length; i++)
+            {
+                if (!tableNames[i].Equals("stationslist"))
+                {
+                    tableNamesThatAreNotStationList.Add(tableNames[i]);
+                }
+            }
+            return tableNamesThatAreNotStationList;
+        }
+        public virtual void GetAllJourneyDates()
+        {
+            List<Journey> AllJourneys = new List<Journey>();
+            string[] allTableNames = GetAllTableNames();
+            List<string> tableNamesNotStationList = returnTableNamesThatAreNotStationList(allTableNames);
+            using (MySqlConnection connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+                for(int i = 0; i < tableNamesNotStationList.Count; i++)
+                {
+                    Console.WriteLine($"Table names in this query are {tableNamesNotStationList[i]}");
+                }
+                string query = "SHOW TABLES FROM testhelsinkidatabase";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Assuming the table name is in the first column of the result set
+                            
+                        }
+                    }
+                }
+                connection.Close();
+            }
+
+           
+        }
+
     }
+
 
 
 
