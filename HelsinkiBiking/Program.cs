@@ -16,6 +16,9 @@ try
         Console.WriteLine($"FID: {station.FID}, ID: {station.ID}, Nimi: {station.Nimi}");
         // You can access other properties of the Station object here
     }
+
+    int DepartureStationCount = dbManager.GetDepartureStationTotal();
+    Console.WriteLine($"Count of departure stations is: {DepartureStationCount}");
 }
 catch (Exception ex)
 {

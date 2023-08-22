@@ -1,5 +1,23 @@
 import React, { Component, useState, useEffect } from 'react';
 
+const fetchStationInfo = (stationId) => {
+    setIsLoading(true);
+    fetch(`https://localhost:7148/api/stationinfo/Kustaankatu`) // assuming the ID is part of the URL
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            setStationInfo(data);
+            setIsLoading(false);
+        })
+        .catch(err => {
+            setError(err.message);
+            setIsLoading(false);
+        });
+};
 
 
 function StationListContent() {
@@ -26,6 +44,7 @@ function StationListContent() {
     if (selectedStation) {
         return (
             <div>
+                <h1> Station Details</h1>
                 {selectedStation.name} - {selectedStation.adress}
                 <button onClick={() => setSelectedStation(null)}>Back to list</button>
             </div>

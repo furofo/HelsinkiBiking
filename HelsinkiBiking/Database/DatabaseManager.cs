@@ -92,6 +92,33 @@
 
             return journeys;
         }
+
+        public virtual int GetDepartureStationTotal()
+        {
+            int count = 0;
+
+            using (MySqlConnection connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT Count(*) AS DepartureStationCount FROM `2021-07` WHERE Departure_station_name = @stationName";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@stationName", "Kustaankatu");
+
+                    object result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        count = Convert.ToInt32(result);
+                    }
+                }
+                connection.Close();
+            }
+
+            return count;
+        }
+
     }
 
 
