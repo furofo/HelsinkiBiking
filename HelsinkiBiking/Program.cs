@@ -21,6 +21,13 @@ try
     int NewDepartureStationCount = dbManager.GetDepartureStationTotal("Tenholantie");
     Console.WriteLine($"Count of departure stations for Kustaankatu is: {DepartureStationCount}"); // should be 4806
     Console.WriteLine($"Count of departure stations for Tenholantie is: {NewDepartureStationCount}"); // should be 2906
+    string[] listOfTableNames = dbManager.GetAllTableNames();
+    for (int i = 0; i < listOfTableNames.Length; i++)
+    {
+        Console.WriteLine($"Table names in datbase are {listOfTableNames[i]}");
+
+    }
+    
 }
 catch (Exception ex)
 {

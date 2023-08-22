@@ -93,6 +93,7 @@
             return journeys;
         }
 
+     
         public virtual int GetDepartureStationTotal(string stationName)
         {
             int count = 0;
@@ -118,8 +119,34 @@
 
             return count;
         }
+        public virtual string[] GetAllTableNames()
+        {
+            List<string> tableNames = new List<string>();
 
+            using (MySqlConnection connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                string query = "SHOW TABLES FROM testhelsinkidatabase";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Assuming the table name is in the first column of the result set
+                            tableNames.Add(reader.GetString(0));
+                        }
+                    }
+                }
+                connection.Close();
+            }
+
+            return tableNames.ToArray();
+        }
     }
+
 
 
 }
