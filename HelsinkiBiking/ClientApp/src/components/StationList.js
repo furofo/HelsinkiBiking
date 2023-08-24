@@ -1,40 +1,29 @@
 import React, { Component, useState, useEffect } from 'react';
 
-const fetchStationInfo = (stationId) => {
-    setIsLoading(true);
-    fetch(`https://localhost:7148/api/stationinfo/Kustaankatu`) // assuming the ID is part of the URL
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            setStationInfo(data);
-            setIsLoading(false);
-        })
-        .catch(err => {
-            setError(err.message);
-            setIsLoading(false);
-        });
-};
+
 
 
 function StationListContent() {
     const [stations, setStations] = useState([]);
     const [selectedStation, setSelectedStation] = useState(null);
-
+    const [departureStationCount, setDepartureStationCount] = useState(null);
+    const fetchDepartureStationTotal = (stationName) => {
+        fetch(`https://localhost:7148/api/DepartureStationCount/${stationName}`)
+            .then(response => response.json())
+            .then(count => {
+                console.log(`Total departures for ${stationName}: ${count}`);
+                setDepartureStationCount(count);
+                // Do something with the count, maybe set it in the state.
+            });
+    };
     useEffect(() => {
         // Assuming your API runs on the same server & port as your React app
         fetch('https://localhost:7148/api/stations')
             .then(response => {
-                console.log("rist response is ", response);
                 return response.json();
-
             })
 
-            .then(data => {
-               
+            .then(data => {         
                 setStations(data);
             });
     }, []); // Note the empty dependency array here.
@@ -42,10 +31,12 @@ function StationListContent() {
         setSelectedStation(station);
     };
     if (selectedStation) {
+        fetchDepartureStationTotal(selectedStation.name);
         return (
             <div>
                 <h1> Station Details</h1>
-                {selectedStation.name} - {selectedStation.adress}
+                <p> Departure Station Name:  {selectedStation.name} -
+               Address:  {selectedStation.adress} -  Total Departures From Station: {departureStationCount} </p>
                 <button onClick={() => setSelectedStation(null)}>Back to list</button>
             </div>
         );
