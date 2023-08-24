@@ -64,7 +64,7 @@
             {
                 connection.Open();
 
-                string query = "SELECT * FROM `2021-06` LIMIT 5";
+                string query = "SELECT * FROM `alljourneys` LIMIT 5";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -102,7 +102,7 @@
             {
                 connection.Open();
 
-                string query = "SELECT Count(*) AS DepartureStationCount FROM `2021-07` WHERE Departure_station_name = @stationName";
+                string query = "SELECT Count(*) AS DepartureStationCount FROM `alljourneys` WHERE Departure_station_name = @stationName";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
