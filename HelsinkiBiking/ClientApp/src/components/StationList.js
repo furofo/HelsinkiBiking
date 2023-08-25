@@ -45,7 +45,7 @@ function StationListContent({ selectedStation, setSelectedStation }) {
                     <h1>Station Details</h1>
                     <p>Departure Station Name: {selectedStation.name}</p>
                     <p>Address: {selectedStation.adress}</p>
-                    <p>Total Departures From Station: {departureStationCount?.departureCount || 'Loading...'}</p>
+                    <p>Total Departures Tos Station: {departureStationCount?.departureCount || 'Loading...'}</p>
                     <p>Total Returns From Station: {departureStationCount?.returnCount || 'Loading...'}</p>
                     <button onClick={() => setSelectedStation(null)}>Back to list</button>
                 </div>

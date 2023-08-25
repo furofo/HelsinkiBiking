@@ -20,14 +20,30 @@ function JourneyListContent() {
 
     return (
         <div>
-            <h2>List of Journeys</h2>
-            <ul>
-                {journeys.map(journey => (
-                    <li key={journey.departureStationId}>
-                        {journey.departureStationName} - {journey.returnStationName}
-                    </li>
-                ))}
-            </ul>
+            <h1>List of Journeys</h1>
+            <div>
+                {journeys.map(journey => {
+                    let durationMinutes = Math.floor(journey.duration / 60);
+                   //  let distanceKilometers = Math.round(journey.duration * 100 / 1000) / 100;
+                    let distanceKilometers = Math.round(journey.coveredDistance * 100 / 1000) / 100;
+                    let count = 1;
+                    count++;
+
+
+                    return (
+                        <div key={journey.id /* assuming there's an id property on journey */}>
+                            <p>
+                                Journey# {count} {journey.departure}
+                                Departure Station Name: {journey.departureStationName} <br />
+                                Return Station Name: {journey.returnStationName} <br />
+                                Duration (Minutes): {durationMinutes} Minutes <br />
+                                Covered Distance (Kilometers): {distanceKilometers} Kilometers
+                            </p>
+                        </div>
+                    );
+                }
+                )}
+            </div>
         </div>
     );
 }
@@ -46,7 +62,7 @@ export class JourneyList extends Component {
             <div>
                 <h1>JourneyList</h1>
                 <JourneyListContent />
-                <p>This is a simple example of a React component.</p>
+              
             </div>
         );
     }
