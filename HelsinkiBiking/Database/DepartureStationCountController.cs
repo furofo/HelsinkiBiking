@@ -15,9 +15,10 @@ using Microsoft.AspNetCore.Mvc;
         }
 
     [HttpGet("{stationName}")]  // This defines a route parameter
-    public ActionResult<int> GetDepartureStationTotal(string stationName)  // Use the name of the parameter here
+    public ActionResult<(int departureCount, int returnCount)> GetDepartureStationTotal(string stationName)
     {
-        return Ok(_dbManager.GetDepartureStationTotal(stationName));
+        return Ok(_dbManager.GetStationTotals(stationName));
     }
+
 
 }

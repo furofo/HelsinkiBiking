@@ -94,34 +94,48 @@
         }
 
      
-        public virtual int GetDepartureStationTotal(string stationName)
+      
+        public virtual StationTotals GetStationTotals(string stationName)
         {
-            int count = 0;
+            int departureCount = 0;
+            int returnCount = 0;
 
             using (MySqlConnection connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
 
-                string query = "SELECT Count(*) AS DepartureStationCount FROM `alljourneys` WHERE Departure_station_name = @stationName";
+                // Modified the query to check both Departure_station_name and Return_Station_Name
+                string query = @"
+            SELECT 
+                (SELECT Count(*) FROM `alljourneys` WHERE Departure_station_name = @stationName) AS DepartureCount,
+                (SELECT Count(*) FROM `alljourneys` WHERE Return_Station_Name = @stationName) AS ReturnCount";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@stationName", stationName);
 
-                    object result = command.ExecuteScalar();
-                    if (result != null)
+                    using (var reader = command.ExecuteReader())
                     {
-                        count = Convert.ToInt32(result);
+                        if (reader.Read())
+                        {
+                            departureCount = reader.GetInt32("DepartureCount");
+                            returnCount = reader.GetInt32("ReturnCount");
+                        }
                     }
                 }
                 connection.Close();
             }
 
-            return count;
+            return new StationTotals
+            {
+                DepartureCount = departureCount,
+                ReturnCount = returnCount
+            };
         }
-    
 
-     
+
+
+
 
     }
 

@@ -11,7 +11,7 @@ try
     for(int i = 0; i < allJourneys.Count; i++)
     {
         Console.WriteLine($"Journey name is {allJourneys[i].ReturnStationName}");
-        Console.WriteLine($"Count of departure station Abraham Wetterin tie is { dbManager.GetDepartureStationTotal("Abraham Wetterin tie")}");
+        Console.WriteLine($"Count of departure station Abraham Wetterin tie is { dbManager.GetStationTotals("Abraham Wetterin tie").DepartureCount}");
     }
     
 }
