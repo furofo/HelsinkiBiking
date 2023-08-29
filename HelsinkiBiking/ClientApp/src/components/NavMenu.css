@@ -1,7 +1,11 @@
 ﻿a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+  
+}
+.navbar {
+    background-color: #12BA19;
 }
 
 .bike-logo {
