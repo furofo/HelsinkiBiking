@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System;
 using HelsinkiBiking.Database;
 using Moq;
+using HelsinkiBiking.Models;
+
 namespace HelsinkiBiking.Test
 {
     public class UnitTest1

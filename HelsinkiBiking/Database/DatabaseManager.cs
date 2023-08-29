@@ -1,5 +1,6 @@
 ﻿namespace HelsinkiBiking.Database
 {
+    using HelsinkiBiking.Models;
     using MySql.Data.MySqlClient;
     using static System.Collections.Specialized.BitVector32;
 

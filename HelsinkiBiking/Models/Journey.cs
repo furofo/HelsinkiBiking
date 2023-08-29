@@ -1,4 +1,4 @@
-﻿namespace HelsinkiBiking.Database
+﻿namespace HelsinkiBiking.Models
 {
     public class Journey
     {

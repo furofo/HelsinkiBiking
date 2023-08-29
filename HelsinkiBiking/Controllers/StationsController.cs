@@ -1,4 +1,5 @@
 ﻿using HelsinkiBiking.Database;
+using HelsinkiBiking.Models;
 using Microsoft.AspNetCore.Mvc;
 
 [Route("api/[controller]")]
