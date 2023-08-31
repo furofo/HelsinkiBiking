@@ -1,8 +1,31 @@
 import React, { Component } from 'react';
-import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink as StrapNavLink } from 'reactstrap';
+import { NavLink as RouterNavLink, Link } from 'react-router-dom';
 import './NavMenu.css';
 import BikeLogo from './images/logos/bikeLogo.png';
+
+//Q: why is this causing activeClassName error
+
+
+// write function called calculate date
+const NavLinkComponent = ({ to, children, isActive, exact, ...rest }) => {
+    // No need to destructure activeClassName from rest because we're not using it explicitly.
+    // Rest will collect all other props that are not to, children, or exact.
+
+    return (
+        <RouterNavLink
+            to={to}
+            exact={exact}
+            className={isActive ? 'current-nav-link' : ''}
+            {...rest} // This should be safe as long as NavLinkComponent only receives props relevant to RouterNavLink.
+        >
+            {children}
+        </RouterNavLink>
+    );
+}
+
+
+
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
@@ -26,29 +49,30 @@ export class NavMenu extends Component {
         console.log("__filename:", __filename);
         console.log("import.meta.url:", import.meta.url);
 
-    return (
-      <header>
-        <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" container light>
-                <NavbarBrand tag={Link} to="/">
-                    <img src={BikeLogo} className = "bike-logo" alt="Bike Logo" />
-                    HelsinkiBiking
-                </NavbarBrand>
-          <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-          <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-            <ul className="navbar-nav flex-grow">
-              <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/JourneyList">JourneyList</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/StationList">StationList</NavLink>
-              </NavItem>
-            </ul>
-          </Collapse>
-        </Navbar>
-      </header>
-    );
+     return (
+            <header>
+                <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" container light>
+                    <NavbarBrand tag={Link} to="/">
+                        <img src={BikeLogo} className="bike-logo" alt="Bike Logo" />
+                        HelsinkiBiking
+                    </NavbarBrand>
+                    <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
+                    <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
+                        <ul className="navbar-nav flex-grow">
+                            <NavItem>
+                                <StrapNavLink tag={NavLinkComponent} to="/">Home</StrapNavLink>
+                            </NavItem>
+                            <NavItem>
+                                <StrapNavLink tag={NavLinkComponent} className="text-dark" to="/JourneyList">JourneyList</StrapNavLink>
+                            </NavItem>
+                            <NavItem>
+                                <StrapNavLink tag={NavLinkComponent} className="text-dark" to="/StationList">StationList</StrapNavLink>
+                            </NavItem>
+                        </ul>
+                    </Collapse>
+                </Navbar>
+            </header>
+        );
+    
   }
 }

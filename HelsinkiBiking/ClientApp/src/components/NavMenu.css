@@ -4,6 +4,17 @@
     word-break: break-all;
   
 }
+.current-nav-link {
+    color: #E1AD01; /* Changing font color to E1AD01 */
+    font-size: 22px; /* Slightly increasing the font size, you can adjust as needed */
+    text-decoration: underline solid #E1AD01; /* Adding a solid underline of the same color */
+}
+.active {
+    color: #E1AD01 !important; /* Changing font color to E1AD01 */
+    font-size: 22px; /* Slightly increasing the font size, you can adjust as needed */
+    text-decoration: underline solid #E1AD01; /* Adding a solid underline of the same color */
+}
+
 
 .navbar {
     background-color: #12BA19;
