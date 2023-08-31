@@ -4,8 +4,15 @@
     word-break: break-all;
   
 }
+
 .navbar {
     background-color: #12BA19;
+    font-family: 'Inter', sans-serif;
+    
+}
+.nav-item {
+    margin-left: 10px;
+    font-size: 20px;
 }
 
 .bike-logo {
