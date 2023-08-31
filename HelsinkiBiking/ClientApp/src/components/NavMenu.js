@@ -63,10 +63,10 @@ export class NavMenu extends Component {
                                 <StrapNavLink tag={NavLinkComponent} to="/">Home</StrapNavLink>
                             </NavItem>
                             <NavItem>
-                                <StrapNavLink tag={NavLinkComponent} className="text-dark" to="/JourneyList">JourneyList</StrapNavLink>
+                                <StrapNavLink tag={NavLinkComponent}  to="/JourneyList">JourneyList</StrapNavLink>
                             </NavItem>
                             <NavItem>
-                                <StrapNavLink tag={NavLinkComponent} className="text-dark" to="/StationList">StationList</StrapNavLink>
+                                <StrapNavLink tag={NavLinkComponent} to="/StationList">StationList</StrapNavLink>
                             </NavItem>
                         </ul>
                     </Collapse>
