@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../custom.css';
 
 export class Home extends Component {
   static displayName = Home.name;
@@ -6,7 +7,7 @@ export class Home extends Component {
   render() {
     return (
       <div>
-        <h1>Test Page!</h1>
+            <p className = "index-styling">View, your journeys and stations traveled. And log your future adventures!!</p>
         
       </div>
     );
