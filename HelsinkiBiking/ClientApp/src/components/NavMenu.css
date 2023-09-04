@@ -18,6 +18,7 @@
 .navbar {
     background-color: #12BA19;
     font-family: 'Inter', sans-serif;
+    margin-bottom: 0px !important;
 }
 .nav-item {
     margin-left: 10px;
