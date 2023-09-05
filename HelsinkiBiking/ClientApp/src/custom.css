@@ -56,14 +56,34 @@ main {
     padding: 2px 0;
     box-sizing: border-box;
 }
+.journey-list-header-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+    .journey-list-header-image img {
+        height: 50%;
+    }
     .journey-alternating-border h1 {
         font-family: 'Leckerli One', cursive;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
     }
+
+.left-bike, .right-bike {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* This is for vertical centering */
+}
+
+.left-bike {
+    left: 0; /* push the left bike to the far left */
+}
+
+.right-bike {
+    right: 0; /* push the right bike to the far right */
+}
+
 
 
 
@@ -81,4 +101,33 @@ main {
         background-position: 0px 502px;
         overflow: hidden;
     }
+        .journey-list-header-image {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+            .journey-list-header-image img {
+                height: 70%;
+            }
+
+        .journey-alternating-border h1 {
+            font-family: 'Leckerli One', cursive;
+        }
+
+        .left-bike, .right-bike {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%); /* This is for vertical centering */
+        }
+
+        .left-bike {
+            left: 0; /* push the left bike to the far left */
+        }
+
+        .right-bike {
+            right: 0; /* push the right bike to the far right */
+        }
 }

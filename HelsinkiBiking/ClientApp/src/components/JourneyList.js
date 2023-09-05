@@ -1,5 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
-
+import leftBike from './images/leftBike.png';
+import rightBike from './images/rightBike.png';
 function JourneyListContent() {
     const [journeys, setJourneys] = useState([]);
 
@@ -21,7 +22,12 @@ function JourneyListContent() {
     return (
         <div>
             <div className="journey-alternating-border ">
-                <h1>List of Journeys</h1>
+                <div className="journey-list-header-image">
+                    <img src={leftBike} alt = "left bike" className = "left-bike"></img>
+                    <h1>List of Journeys</h1>
+                    <img src={rightBike} alt = "right - bike" className = "right-bike"></img>
+                </div>
+                
             </div>
         <div>
          
