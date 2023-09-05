@@ -20,6 +20,9 @@ function JourneyListContent() {
 
     return (
         <div>
+            <div className="journey-alternating-border ">
+            </div>
+        <div>
             <h1>List of Journeys</h1>
             <div>
                 {journeys.map(journey => {
@@ -44,7 +47,8 @@ function JourneyListContent() {
                 }
                 )}
             </div>
-        </div>
+            </div>
+</div>
     );
 }
 
