@@ -55,6 +55,11 @@ main {
 }
     .journey-alternating-border h1 {
         font-family: 'Leckerli One', cursive;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
     }
 
 
