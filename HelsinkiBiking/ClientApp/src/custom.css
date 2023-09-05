@@ -56,6 +56,9 @@ main {
     padding: 2px 0;
     box-sizing: border-box;
 }
+.journey-list {
+    margin-bottom: 40px;
+}
 .journey-list-header-image {
     width: 100%;
     display: flex;
@@ -69,6 +72,18 @@ main {
     .journey-alternating-border h1 {
         font-family: 'Leckerli One', cursive;
     }
+.journey-list h1 {
+    font-family: 'Lobster', cursive;
+    text-decoration: underline;
+    margin-left: 20%; /* Add some margin to the left of h1 */
+    margin-bottom: 30px;
+}
+
+.journey-list p {
+    text-align: left; /* This will right-align the text inside the p element */
+    margin-left: 30%; /* Add some margin to the right of p */
+    font-family: 'Alike', serif;
+}
 
 .left-bike, .right-bike {
     position: absolute;
@@ -86,7 +101,14 @@ main {
 
 .journey-list h1 {
     font-family: 'Lobster', cursive;
+    text-decoration: underline;
 }
+.lobster-label {
+    font-family: 'Lobster', cursive;
+    font-size: 1.2em; /* Adjust size as required */
+    margin-right: 30px;
+}
+
 
 
 

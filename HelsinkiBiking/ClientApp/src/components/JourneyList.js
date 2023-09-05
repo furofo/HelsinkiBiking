@@ -45,11 +45,10 @@ function JourneyListContent() {
                         <div key={journey.id /* assuming there's an id property on journey */} className = "journey-list">
                             <h1>  Journey# {count} {formattedDate}</h1>
                             <p>
-                           
-                                Departure Station Name: {journey.departureStationName} <br />
-                                Return Station Name: {journey.returnStationName} <br />
-                                Duration (Minutes): {durationMinutes} Minutes <br />
-                                Covered Distance (Kilometers): {distanceKilometers} Kilometers
+                                <span className="lobster-label">Departure Station Name:</span> {journey.departureStationName} <br />
+                                <span className="lobster-label">Return Station Name:</span> {journey.returnStationName} <br />
+                                <span className="lobster-label">Duration (Minutes):</span> {durationMinutes} Minutes <br />
+                                <span className="lobster-label">Covered Distance (Kilometers):</span> {distanceKilometers} Kilometers
                             </p>
                         </div>
                     );
