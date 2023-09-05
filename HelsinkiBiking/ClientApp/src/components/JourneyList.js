@@ -32,18 +32,20 @@ function JourneyListContent() {
         <div>
          
             <div>
-                {journeys.map(journey => {
+                {journeys.map((journey, index )=> {
                     let durationMinutes = Math.floor(journey.duration / 60);
                    //  let distanceKilometers = Math.round(journey.duration * 100 / 1000) / 100;
                     let distanceKilometers = Math.round(journey.coveredDistance * 100 / 1000) / 100;
-                    let count = 1;
-                    count++;
-
+                    let count = index + 1;
+                    let date = new Date(journey.departure);
+                    let formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+                 
 
                     return (
-                        <div key={journey.id /* assuming there's an id property on journey */}>
+                        <div key={journey.id /* assuming there's an id property on journey */} className = "journey-list">
+                            <h1>  Journey# {count} {formattedDate}</h1>
                             <p>
-                                Journey# {count} {journey.departure}
+                           
                                 Departure Station Name: {journey.departureStationName} <br />
                                 Return Station Name: {journey.returnStationName} <br />
                                 Duration (Minutes): {durationMinutes} Minutes <br />
