@@ -21,9 +21,10 @@ function JourneyListContent() {
     return (
         <div>
             <div className="journey-alternating-border ">
+                <h1>List of Journeys</h1>
             </div>
         <div>
-            <h1>List of Journeys</h1>
+         
             <div>
                 {journeys.map(journey => {
                     let durationMinutes = Math.floor(journey.duration / 60);
@@ -60,11 +61,11 @@ export class JourneyList extends Component {
     }
 
     render() {
-        console.log("testing if this ran journeys list");
+     
 
         return (
             <div>
-                <h1>JourneyList</h1>
+                
                 <JourneyListContent />
               
             </div>
