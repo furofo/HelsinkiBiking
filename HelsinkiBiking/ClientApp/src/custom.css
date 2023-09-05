@@ -44,11 +44,14 @@ main {
 }
 
 .journey-alternating-border {
-    height: 400px;
-    background-image: linear-gradient(90deg, transparent 0%, transparent 5%, #E1AD01 5%, #E1AD01 45%, transparent 45%, transparent 55%, #0F0F0F 55%, #0F0F0F 95%, transparent 95%),
-        linear-gradient(90deg, transparent 0%, transparent 5%, #E1AD01 5%, #E1AD01 45%, transparent 45%, transparent 55%, #0F0F0F 55%, #0F0F0F 95%, transparent 95%);
+    position: relative;
+    top: 26px;
+    margin-bottom: 70px;
+    width: 100vw;
+    height: 200px;
+    background-image: linear-gradient(90deg, transparent 0%, transparent 5%, #E1AD01 5%, #E1AD01 45%, transparent 45%, transparent 55%, #0F0F0F 55%, #0F0F0F 95%, transparent 95%), linear-gradient(90deg, transparent 0%, transparent 5%, #E1AD01 5%, #E1AD01 45%, transparent 45%, transparent 55%, #0F0F0F 55%, #0F0F0F 95%, transparent 95%);
     background-repeat: repeat-x;
-    background-size: 40px 2px, 40px 2px;
+    background-size: 200px 6px, 200px 6px;
     background-position: top center, bottom center;
     padding: 2px 0;
     box-sizing: border-box;
