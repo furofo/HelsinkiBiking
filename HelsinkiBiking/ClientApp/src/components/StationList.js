@@ -1,6 +1,8 @@
 import React, { Component, useState, useEffect } from 'react';
 import xMarksSpot from './images/xmarkspotwithoutbackground.png';
 import locationMap from './images/locatiomapnobackground.png';
+import bicycleWheel from './images/bicycleWheelNoBackground.png';
+
 
 
 function StationListContent({ selectedStation, setSelectedStation }) {
@@ -47,13 +49,33 @@ function StationListContent({ selectedStation, setSelectedStation }) {
                     <div className="overlay">
                 </div>
                 </div>
+                <div className="all-stations-list station-details">
+                    <img src={bicycleWheel} alt="Bicycle Wheel" className="bicycle-wheel" /> 
+                    <h1 className = "details-header"> Station Name: </h1>
+                    <p>{selectedStation.name}</p>
+                </div>
+                <div className="all-stations-list station-details">
+                    <h1 className="details-header"> Address: </h1>
+                    <p>{selectedStation.adress}</p>
+                </div>
+                <div className="all-stations-list station-details">
+                    <h1 className="details-header"> Total Departures To Station: </h1>
+                    <p className = "orange-text">{departureStationCount?.departureCount || 'Loading...'}</p>
+                </div> 
+                <div className="all-stations-list station-details">
+                    <h1 className="details-header" > Total Departures From Station: </h1>
+                    <p className = "orange-text details-p">{departureStationCount?.returnCount || 'Loading...'}</p>
+                </div>
+                <div className="all-stations-list station-details">
+                    <button className = "selected-station-button" onClick={() => setSelectedStation(null)}>Back to list</button>
+
+                </div>
+
+
                     
-                    <p>Departure Station Name: {selectedStation.name}</p>
-                    <p>Address: {selectedStation.adress}</p>
-                    <p>Total Departures Tos Station: {departureStationCount?.departureCount || 'Loading...'}</p>
-                    <p>Total Returns From Station: {departureStationCount?.returnCount || 'Loading...'}</p>
-                    <button onClick={() => setSelectedStation(null)}>Back to list</button>
-                
+                  
+                  
+               <div className="bike-parts-background-container "> </div>   
             </div>
          
         );
@@ -86,6 +108,7 @@ function StationListContent({ selectedStation, setSelectedStation }) {
                             <button className="station-details-button" onClick={() => handleStationClick(station)}>
 More Details                                </button>
                         </div>
+                        <div className="map-background-container "> </div>
                        
                     </div>
                 ))}
@@ -130,7 +153,7 @@ export class StationList extends Component {
                       </div>        
                   </div>
               )}
-              <div className = "map-background-container "> </div>
+             
               <StationListContent
                   selectedStation={selectedStation}
                   setSelectedStation={this.setSelectedStation} />

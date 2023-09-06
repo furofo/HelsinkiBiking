@@ -184,19 +184,47 @@ main {
     left: 0;
     width: 100vw;
     height: 100%;
-    opacity: 10%;
+    opacity: 2%;; /* A value between 0 and 1; changed from 5% to 0.05 */
     z-index: -20; /* This ensures the background is below all other content. */
 
     background-image: url('./components/images/mapbackgroundrepeating.png'); /* Points to the image in the same directory as other images */
-    background-size: auto; /* Allows the image to display in its original size */
-    background-repeat: repeat; /* Image will repeat in both x and y directions */
+    background-size: 100vw auto; /* 100% of the viewport width, auto height to maintain aspect ratio */
+    background-repeat: repeat-y; /* Repeat only vertically */
 }
+.bike-parts-background-container {
+    position: absolute; /* Fixed positioning to ensure it covers the full viewport */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    opacity: 20%;
+    ; /* A value between 0 and 1; changed from 5% to 0.05 */
+    z-index: -20; /* This ensures the background is below all other content. */
+
+    background-image: url('./components/images/bikepartsbackground.png'); /* Points to the image in the same directory as other images */
+    background-size: 50vw auto; /* 100% of the viewport width, auto height to maintain aspect ratio */
+    background-repeat: repeat-y; /* Repeat only vertically */
+}  
+
 .all-stations-list {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
     justify-content: center;
     align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
+.all-stations-list p, .all-stations-list h1 {
+   margin-bottom: 0px;
+}
+    .all-stations-list p {
+        font-family: 'Alike', serif;
+        margin-right: 100px;
+        font-size: 1.7em;
+    }
     .all-stations-list:first-of-type {
         margin-top: 40px;
     }
@@ -269,7 +297,39 @@ main {
         font-size: 1.2em;
         transition: font-size .6s, color .6s;
     }
+.bicycle-wheel {
+    height: 90px;
+    margin-right: 20px;
+}
+.station-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+    width: 100vw;
+    margin-right: 30px;
+    height: 90px;
+}
 
+.details-header {
+    margin-left: 30px;
+}
+.selected-station-button {
+    border-radius: 5px;
+    background-color: #E1AD01;
+    border: none;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 10px;
+    font-family: 'Alike', serif; /* 'serif' is a fallback font in case 'Alike' doesn't load */
+    
+}
+
+.orange-text {
+    color: #E1AD01;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Adjust as needed */
+}
 
 @media (min-width: 768px) {
     .reload {
@@ -328,5 +388,7 @@ main {
         height: 351px;
         background-position: 0px -500px;
     }
+
+   
 
 }
