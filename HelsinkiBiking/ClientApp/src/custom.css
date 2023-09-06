@@ -110,6 +110,8 @@ main {
 }
 .background_station_list_container {
     position: relative;
+    display: flex;
+    align-items: center;
     width: 100vw;
     height: 200px;
     background-image: url(./components/images/bikestationbackground.png);
@@ -118,6 +120,15 @@ main {
     overflow: hidden;
     z-index: 1;
 }
+
+    .background_station_list_container h1 {
+        font-family: 'Lobster', cursive;
+        color: #E1AD01;
+        z-index: 7;
+        margin-left: 60px;
+        font-size: 4em;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
 .background-station-list-overlay {
     position: absolute;
     top: 0;
@@ -185,5 +196,10 @@ main {
         overflow: hidden;
         z-index: 1;
     }
+        .background_station_list_container h1 {
+         
+            font-size: 5em;
+            ;
+        }
 
 }

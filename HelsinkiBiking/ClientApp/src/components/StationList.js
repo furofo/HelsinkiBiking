@@ -94,13 +94,14 @@ export class StationList extends Component {
               {selectedStation ? null : (
                   <div>
                       <div className="background_station_list_container">
+                          <h1> Station List</h1>
                           <div className="background-station-list-overlay">
-                          </div>"
+                          </div>
                       </div>
 
                       
                       
-                      <h1> Station List</h1>
+                     
                       <p>Select a station below:</p>
                   </div>
               )}
