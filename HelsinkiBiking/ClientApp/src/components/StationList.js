@@ -106,14 +106,10 @@ export class StationList extends Component {
                           <h1> Station List</h1>
                           <div className="overlay">
                           </div>
-                      </div>
-
-                      
-                      
-                     
-                      <p>Select a station below:</p>
+                      </div>        
                   </div>
               )}
+              <div className = "map-background-container "> </div>
               <StationListContent
                   selectedStation={selectedStation}
                   setSelectedStation={this.setSelectedStation} />
