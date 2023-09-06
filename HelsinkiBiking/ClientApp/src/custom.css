@@ -108,7 +108,26 @@ main {
     font-size: 1.2em; /* Adjust size as required */
     margin-right: 30px;
 }
-
+.background_station_list_container {
+    position: relative;
+    width: 100vw;
+    height: 200px;
+    background-image: url(./components/images/bikestationbackground.png);
+    background-size: cover;
+    background-position: 0px -30px;
+    overflow: hidden;
+    z-index: 1;
+}
+.background-station-list-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    z-index: 5;
+    opacity: .15;
+}
 
 
 
@@ -125,6 +144,8 @@ main {
         background-position: 0px 502px;
         overflow: hidden;
     }
+   
+   
         .journey-list-header-image {
             width: 100%;
             display: flex;
@@ -154,4 +175,15 @@ main {
         .right-bike {
             right: 0; /* push the right bike to the far right */
         }
+    .background_station_list_container {
+        position: relative;
+        width: 100vw;
+        height: 351px;
+        background-image: url(./components/images/bikestationbackground.png);
+        background-size: cover;
+        background-position: 0px -30px;
+        overflow: hidden;
+        z-index: 1;
+    }
+
 }

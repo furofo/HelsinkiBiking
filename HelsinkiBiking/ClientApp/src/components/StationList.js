@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from 'react';
-
+import backgroundBikes from './images/bikestationbackground.png';
 
 
 
@@ -93,6 +93,13 @@ export class StationList extends Component {
           <div>
               {selectedStation ? null : (
                   <div>
+                      <div className="background_station_list_container">
+                          <div className="background-station-list-overlay">
+                          </div>"
+                      </div>
+
+                      
+                      
                       <h1> Station List</h1>
                       <p>Select a station below:</p>
                   </div>
