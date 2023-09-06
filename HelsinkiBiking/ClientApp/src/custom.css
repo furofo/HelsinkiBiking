@@ -207,22 +207,68 @@ main {
 
 .x-marks-the-spot {
     height: 40px;
+   
 }
 
 .orange-line, .black-line {
     width: 70px;
     height: 7px;
+    margin-top: 20px;
     margin-bottom: 20px; /* Adds space between the two lines */
 }
 
 .orange-line {
-    margin: 0px 40px 20px 0px;
+    margin: 20px 40px 20px 0px;
     background-color: #E1AD01;
 }
 
 .black-line {
     background-color: #0F0F0F;
 }
+
+.clickable {
+    cursor: pointer;
+    transition: font-size .6s, color .6s;
+    align-self: center;
+}
+    .clickable:hover {
+        font-size: 1.2em;
+        color: #E1AD01;
+    }
+
+.location-map {
+    height: 80px;
+    cursor: pointer;
+}
+
+
+.map-and-text-wrapper {
+    display: flex;
+    align-items: center; /* This vertically aligns the child elements */
+    justify-content: flex-start; /* This will align items to the left, adjust if needed */
+}
+
+    .map-and-text-wrapper p {
+        text-align: center;
+        margin-bottom: 0px;
+        font-family: 'Alike', serif;
+        font-size: 1.2em;
+    }
+
+.station-details-button {
+    border-radius: 5px;
+    background-color: #E1AD01;
+    border: none;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 10px;
+    font-family: 'Alike', serif; /* 'serif' is a fallback font in case 'Alike' doesn't load */
+}
+
+    .station-details-button:hover {
+        font-size: 1.2em;
+        transition: font-size .6s, color .6s;
+    }
 
 
 @media (min-width: 768px) {
