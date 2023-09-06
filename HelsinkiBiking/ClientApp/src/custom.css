@@ -108,6 +108,27 @@ main {
     font-size: 1.2em; /* Adjust size as required */
     margin-right: 30px;
 }
+@keyframes slideRight {
+    0% {
+        background-position: -100vw -30px; /* Slide from left */
+    }
+
+    100% {
+        background-position: 0px -30px; /* Normal position */
+    }
+}
+@keyframes slideLeft {
+    0% {
+        background-position: 100vw -30px; /* Slide from right */
+    }
+
+    100% {
+        background-position: 0px -30px; /* Normal position */
+    }
+}
+.apply-slide-left {
+    animation: slideLeft .2s ease-out;
+}
 .background_station_list_container {
     position: relative;
     display: flex;
@@ -119,9 +140,24 @@ main {
     background-position: 0px -30px;
     overflow: hidden;
     z-index: 1;
+    
 }
 
-    .background_station_list_container h1 {
+.station_details_container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    height: 200px;
+    background-image: url(./components/images/bikestationinfo.png);
+    background-size: cover;
+    background-position: 0px -30px;
+    overflow: hidden;
+    z-index: 1;
+    animation: slideRight .2s ease-out;
+}
+
+    .background_station_list_container h1, .station_details_container h1{
         font-family: 'Lobster', cursive;
         color: #E1AD01;
         z-index: 7;
@@ -129,7 +165,7 @@ main {
         font-size: 4em;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
-.background-station-list-overlay {
+.overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -187,19 +223,17 @@ main {
             right: 0; /* push the right bike to the far right */
         }
     .background_station_list_container {
-        position: relative;
-        width: 100vw;
         height: 351px;
-        background-image: url(./components/images/bikestationbackground.png);
-        background-size: cover;
-        background-position: 0px -30px;
-        overflow: hidden;
-        z-index: 1;
     }
         .background_station_list_container h1 {
          
             font-size: 5em;
-            ;
+            
         }
+
+    .station_details_container {
+        height: 351px;
+        background-position: 0px -500px;
+    }
 
 }

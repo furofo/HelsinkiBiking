@@ -41,15 +41,20 @@ function StationListContent({ selectedStation, setSelectedStation }) {
 
     if (selectedStation) {
         return (               
-                <div>
-                    <h1>Station Details</h1>
+            <div>
+                <div className="station_details_container">
+                    <h1> Station Details</h1>
+                    <div className="overlay">
+                </div>
+                </div>
+                    
                     <p>Departure Station Name: {selectedStation.name}</p>
                     <p>Address: {selectedStation.adress}</p>
                     <p>Total Departures Tos Station: {departureStationCount?.departureCount || 'Loading...'}</p>
                     <p>Total Returns From Station: {departureStationCount?.returnCount || 'Loading...'}</p>
                     <button onClick={() => setSelectedStation(null)}>Back to list</button>
-                </div>
-       
+                
+            </div>
          
         );
     }
@@ -76,12 +81,16 @@ export class StationList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedStation: null
+            selectedStation: null,
+            slideLeft: false
         };
     }
 
     setSelectedStation = (station) => {
-        this.setState({ selectedStation: station });
+        this.setState({
+            selectedStation: station,
+            slideLeft: station === null
+        });
     };
 
 
@@ -93,9 +102,9 @@ export class StationList extends Component {
           <div>
               {selectedStation ? null : (
                   <div>
-                      <div className="background_station_list_container">
+                      <div className={`background_station_list_container ${this.state.slideLeft ? 'apply-slide-left' : ''}`}>
                           <h1> Station List</h1>
-                          <div className="background-station-list-overlay">
+                          <div className="overlay">
                           </div>
                       </div>
 
