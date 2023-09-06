@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
 import backgroundBikes from './images/bikestationbackground.png';
-
+import xMarksSpot from './images/xmarkspotwithoutbackground.png';
 
 
 function StationListContent({ selectedStation, setSelectedStation }) {
@@ -60,15 +60,27 @@ function StationListContent({ selectedStation, setSelectedStation }) {
     }
     else {
         return (
-            <ul>
+            <div>
                 {stations.map(station => (
+                    <div>
+                    <div className = "all-stations-list">
+                        <h1>{station.name}</h1>
+                            <img src={xMarksSpot} alt="X Marks the Spot" className="x-marks-the-spot" /> 
+                        </div>
+                        <div className="all-stations-list">
+                            <div className="orange-line"> </div>
+                            <div className = "black-line"> </div>
+
+</div>
                     <li
                         key={station.fid}
                         onClick={() => handleStationClick(station)}>
-                        {station.name} - {station.adress}
-                    </li>
+                         - {station.adress}
+                        </li>
+                       
+                    </div>
                 ))}
-            </ul>);
+            </div>);
 
     }
 

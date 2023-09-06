@@ -183,7 +183,7 @@ main {
     bottom: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     opacity: 10%;
     z-index: -20; /* This ensures the background is below all other content. */
 
@@ -191,8 +191,38 @@ main {
     background-size: auto; /* Allows the image to display in its original size */
     background-repeat: repeat; /* Image will repeat in both x and y directions */
 }
+.all-stations-list {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+    .all-stations-list:first-of-type {
+        margin-top: 40px;
+    }
+    .all-stations-list h1 {
+        font-family: 'Lobster', cursive;
+        margin-right: 20px;
+    }
 
+.x-marks-the-spot {
+    height: 40px;
+}
 
+.orange-line, .black-line {
+    width: 70px;
+    height: 7px;
+    margin-bottom: 20px; /* Adds space between the two lines */
+}
+
+.orange-line {
+    margin: 0px 40px 20px 0px;
+    background-color: #E1AD01;
+}
+
+.black-line {
+    background-color: #0F0F0F;
+}
 
 
 @media (min-width: 768px) {
