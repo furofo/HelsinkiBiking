@@ -12,11 +12,14 @@
     <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
     <ImplicitUsings>enable</ImplicitUsings>
     <BaseIntermediateOutputPath>C:\Users\chris\GitHubProjects\HelsinkiBiking\HelsinkiBiking\obj</BaseIntermediateOutputPath>
+    <UserSecretsId>7a7cf8f0-61c0-4f1e-946e-ca3ee4a4da55</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="DotNetEnv" Version="2.5.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="7.0.5" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.4" />
     <PackageReference Include="Moq" Version="4.20.69" />
     <PackageReference Include="MySql.Data" Version="8.1.0" />
   </ItemGroup>
