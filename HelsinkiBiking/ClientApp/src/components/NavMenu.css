@@ -23,11 +23,16 @@
 .nav-item {
     margin-left: 10px;
     font-size: 20px;
+    transition: font-size .3s ease-in-out;
 }
 
 .bike-logo {
     height: 4em;
     margin: 0px 20px 0px 20px;
+}
+.nav-item:hover {
+    font-size: 1.6em;
+
 }
 
 html {
@@ -45,5 +50,17 @@ html {
 @media (max-width: 960px) {
     .bike-logo {
         height: 2em;
+    }
+    .nav-item,.navbar-brand{
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+        text-align: center;
+    }
+    
+    .navbar-nav .show > .nav-link, .navbar-nav .nav-link.active {
+        color: #E1AD01;
+        font-size: 17px;
+        text-decoration: underline solid #E1AD01;
     }
 }

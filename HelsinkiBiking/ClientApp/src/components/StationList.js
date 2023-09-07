@@ -50,21 +50,41 @@ function StationListContent({ selectedStation, setSelectedStation }) {
                 </div>
                 </div>
                 <div className="all-stations-list station-details">
-                    <img src={bicycleWheel} alt="Bicycle Wheel" className="bicycle-wheel" /> 
-                    <h1 className = "details-header"> Station Name: </h1>
-                    <p>{selectedStation.name}</p>
+                    <div className="wheel-image-wrapper">
+                        <img src={bicycleWheel} alt="Bicycle Wheel" className="bicycle-wheel" /> 
+                    </div>
+                    <div className="details-wrapper">
+                        <h1 className="details-header"> Station Name: </h1>
+                    </div>
+                    <div className="selected-station-name-wrapper">
+                        <p>{selectedStation.name}</p>
+                    </div>
+                   
+                   
                 </div>
                 <div className="all-stations-list station-details">
-                    <h1 className="details-header"> Address: </h1>
-                    <p>{selectedStation.adress}</p>
+                    <div className="details-wrapper">
+                        <h1 className="details-header"> Address: </h1>
+                    </div>
+                    <div className="selected-station-name-wrapper">
+                        <p>{selectedStation.adress}</p>
+                    </div>
                 </div>
                 <div className="all-stations-list station-details">
-                    <h1 className="details-header"> Total Departures To Station: </h1>
-                    <p className = "orange-text">{departureStationCount?.departureCount || 'Loading...'}</p>
+                    <div className="details-wrapper">
+                        <h1 className="details-header"> Total Departures To Station: </h1>
+                    </div>
+                    <div className="selected-station-name-wrapper">
+                        <p className="orange-text">{departureStationCount?.departureCount || 'Loading...'}</p>
+                    </div>
                 </div> 
                 <div className="all-stations-list station-details">
-                    <h1 className="details-header" > Total Departures From Station: </h1>
-                    <p className = "orange-text details-p">{departureStationCount?.returnCount || 'Loading...'}</p>
+                    <div className="details-wrapper">
+                        <h1 className="details-header" > Total Departures From Station: </h1>
+                    </div>
+                    <div className="selected-station-name-wrapper">
+                        <p className="orange-text details-p">{departureStationCount?.returnCount || 'Loading...'}</p>
+                    </div>
                 </div>
                 <div className="all-stations-list station-details">
                     <button className = "selected-station-button" onClick={() => setSelectedStation(null)}>Back to list</button>

@@ -222,7 +222,7 @@ main {
 }
     .all-stations-list p {
         font-family: 'Alike', serif;
-        margin-right: 100px;
+        margin-right: 0px;
         font-size: 1.7em;
     }
     .all-stations-list:first-of-type {
@@ -308,12 +308,13 @@ main {
     
     width: 100vw;
     margin-right: 30px;
-    height: 90px;
+    height: auto;
 }
-
 .details-header {
     margin-left: 30px;
+    width: 100%;
 }
+
 .selected-station-button {
     border-radius: 5px;
     background-color: #E1AD01;
@@ -322,7 +323,10 @@ main {
     margin-bottom: 40px;
     padding: 10px;
     font-family: 'Alike', serif; /* 'serif' is a fallback font in case 'Alike' doesn't load */
-    
+    transition: padding 0.3s ease-in-out;
+}
+.selected-station-button:hover {
+    padding: 15px;
 }
 
 .orange-text {
@@ -331,7 +335,54 @@ main {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Adjust as needed */
 }
 
+.wheel-image-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+.details-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+   
+}
+.selected-station-name-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 @media (min-width: 768px) {
+    
+    .all-stations-list p {
+        font-family: 'Alike', serif;
+        margin-right: 100px;
+        font-size: 1.7em;
+    }
+    .details-wrapper {
+        display: flex;
+        justify-content: center;
+        width: auto;
+      
+    }
+    .selected-station-name-wrapper {
+        display: flex;
+        justify-content: center;
+        width: auto;
+    }
+    .details-header {
+        width: auto;
+        margin-left: 30px;
+        text-align:center;
+    }
+   
+    .wheel-image-wrapper {
+        width: auto;
+        height: 90px;
+        margin-bottom: 0px;
+    }
     .reload {
         font-size: 24px;
         min-width: 196px;
@@ -389,6 +440,8 @@ main {
         background-position: 0px -500px;
     }
 
-   
-
+    .station-details {
+        height: 90px;
+    }
+ 
 }
