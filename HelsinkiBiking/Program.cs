@@ -27,7 +27,9 @@ public class Program
         {
             options.AddPolicy("AllowReactApp", builder =>   // Named policy "AllowReactApp"
             {
-                builder.WithOrigins("http://localhost:8080")  // Replace with your React app's domain/port if different
+                builder.WithOrigins(
+                    "http://localhost:8080",  // React app on port 8080
+            "https://localhost:44446") // React app on port 44446// Replace with your React app's domain/port if different
                        .AllowAnyHeader()
                        .AllowAnyMethod();
             });
