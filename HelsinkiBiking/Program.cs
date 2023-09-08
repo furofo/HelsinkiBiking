@@ -4,6 +4,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using HelsinkiBiking.Database;
+using MySql.Data.MySqlClient;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 
 public class Program
 {
@@ -19,11 +25,11 @@ public class Program
         // Add services to the container.
         builder.Services.AddCors(options =>
         {
-            options.AddDefaultPolicy(builder =>
+            options.AddPolicy("AllowReactApp", builder =>   // Named policy "AllowReactApp"
             {
-                builder.WithOrigins("https://localhost:44446")  // Replace with your React app's domain/port
-                    .AllowAnyHeader()
-                    .AllowAnyMethod();
+                builder.WithOrigins("http://localhost:8080")  // Replace with your React app's domain/port if different
+                       .AllowAnyHeader()
+                       .AllowAnyMethod();
             });
         });
 
@@ -41,7 +47,9 @@ public class Program
         app.UseHttpsRedirection();
         app.UseStaticFiles();
         app.UseRouting();
-        app.UseCors();
+
+        // Use the named CORS policy
+        app.UseCors("AllowReactApp");
 
         app.UseEndpoints(endpoints =>
         {
