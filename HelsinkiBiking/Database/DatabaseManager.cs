@@ -21,7 +21,7 @@
             {
                 connection.Open();
 
-                string query = "SELECT * FROM StationsList LIMIT 5";
+                string query = "SELECT * FROM stationslist LIMIT 5";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
