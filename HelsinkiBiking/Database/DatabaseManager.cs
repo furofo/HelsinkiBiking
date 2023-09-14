@@ -14,15 +14,20 @@
             _connectionString = connectionString;
         }
 
-        public virtual List<Station> GetStations()
+        public virtual List<Station> GetStationsByPage(int page)
         {
             List<Station> stations = new List<Station>();
+
+            // Calculate the offset based on the page number and the number of records per page (e.g., 5 per page)
+            int recordsPerPage = 10;
+            int offset = (page - 1) * recordsPerPage;
 
             using (MySqlConnection connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
 
-                string query = "SELECT * FROM stationslist LIMIT 5";
+                // Use the LIMIT and OFFSET clauses to implement pagination
+                string query = $"SELECT * FROM stationslist ORDER BY Name LIMIT {recordsPerPage} OFFSET {offset}";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -30,33 +35,32 @@
                     {
                         while (reader.Read())
                         {
-                       Station station = new Station(
-                       reader.GetInt32("FID"),
-                       reader.GetInt32("ID"),
-                       reader.GetString("Nimi"),
-                       reader.GetString("Namn"),
-                       reader.GetString("Name"),
-                       reader.GetString("Osoite"),
-                       reader.GetString("Adress"),
-                       reader.GetString("Kaupunki"),
-                       reader.GetString("Stad"),
-                       reader.GetString("Operaattor"),
-                       reader.GetInt32("Kapasiteet"),
-                       reader.GetDecimal("x"),
-                       reader.GetDecimal("y")
-                   );
+                            Station station = new Station(
+                                reader.GetInt32("FID"),
+                                reader.GetInt32("ID"),
+                                reader.GetString("Nimi"),
+                                reader.GetString("Namn"),
+                                reader.GetString("Name"),
+                                reader.GetString("Osoite"),
+                                reader.GetString("Adress"),
+                                reader.GetString("Kaupunki"),
+                                reader.GetString("Stad"),
+                                reader.GetString("Operaattor"),
+                                reader.GetInt32("Kapasiteet"),
+                                reader.GetDecimal("x"),
+                                reader.GetDecimal("y")
+                            );
 
                             stations.Add(station);
-                            Console.Write("stations list length is on next line:");
-                            Console.WriteLine(stations.Count);
                         }
                     }
                 }
                 connection.Close();
             }
-           
+
             return stations;
         }
+
 
         public virtual List<Journey> GetJourneysByPage(int page)
         {
@@ -102,7 +106,7 @@
 
 
 
-        public virtual StationTotals GetStationTotals(string stationName)
+        public virtual StationTotals GetStationTotals(int id)
         {
             int departureCount = 0;
             int returnCount = 0;
@@ -111,15 +115,16 @@
             {
                 connection.Open();
 
-                // Modified the query to check both Departure_station_name and Return_Station_Name
                 string query = @"
-            SELECT 
-                (SELECT Count(*) FROM `alljourneys` WHERE Departure_station_name = @stationName) AS DepartureCount,
-                (SELECT Count(*) FROM `alljourneys` WHERE Return_Station_Name = @stationName) AS ReturnCount";
+        SELECT 
+            (SELECT Count(*) FROM `alljourneys` WHERE Departure_station_id = @id) AS DepartureCount,
+            (SELECT Count(*) FROM `alljourneys` WHERE Return_station_id = @id) AS ReturnCount";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@stationName", stationName);
+                    // Use MySqlParameter to safely pass the id and fid values
+                    command.Parameters.Add(new MySqlParameter("@id", MySqlDbType.Int32) { Value = id });
+                    command.Parameters.Add(new MySqlParameter("@fid", MySqlDbType.Int32) { Value = id });
 
                     using (var reader = command.ExecuteReader())
                     {
@@ -139,6 +144,8 @@
                 ReturnCount = returnCount
             };
         }
+
+
 
 
         public virtual int GetTotalJourneysCount()
@@ -162,7 +169,28 @@
 
             return totalJourneysCount;
         }
+        public virtual int GetTotalStationsCount()
+        {
+            int totalStationsCount = 0;
 
+            using (MySqlConnection connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+
+
+                // Use the COUNT(*) query to get the total number of journeys
+                string query = "SELECT COUNT(*) FROM `stationslist`";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    totalStationsCount = Convert.ToInt32(command.ExecuteScalar());
+                }
+
+                connection.Close();
+            }
+
+            return totalStationsCount;
+        }
 
 
     }

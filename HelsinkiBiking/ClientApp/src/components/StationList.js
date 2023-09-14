@@ -8,35 +8,45 @@ import bicycleWheel from './images/bicycleWheelNoBackground.png';
 function StationListContent({ selectedStation, setSelectedStation }) {
     const [stations, setStations] = useState([]);  
     const [departureStationCount, setDepartureStationCount] = useState(null);
-    const fetchDepartureStationTotal = (stationName) => {
-        fetch(`http://localhost:7148/api/DepartureStationCount/${stationName}`)
-            .then(response => response.json())
+    const [currentPage, setCurrentPage] = useState(1);
+    const [maxPage, setMaxPage] = useState(1);
+    const fetchDepartureStationTotal = (id) => {
+        fetch(`http://localhost:7148/api/DepartureStationCount/${id}`)
+            .then(response => {
+                console.log("resonpse is now" + response);
+                return response.json()
+            })
             .then(retrievedCounts => {
-                console.log(`Retrieved Count Values are ${retrievedCounts}`)
-                console.log(`Total departures for ${stationName}: ${retrievedCounts.departureCount}`);
-                console.log(`Total returns  for ${stationName}: ${retrievedCounts.returnCount}`);
+                console.log("retriecCounts is", retrievedCounts);
+                console.log("dpearure count is", retrievedCounts.departureCount);
                 setDepartureStationCount(retrievedCounts);
                 // Do something with the count, maybe set it in the state.
             });
     };
     useEffect(() => {
         // Assuming your API runs on the same server & port as your React app
-        fetch('http://localhost:7148/api/stations')
+        fetch(`http://localhost:7148/api/stations/${currentPage}`)
             .then(response => {
                 return response.json();
             })
 
             .then(data => {         
                 setStations(data);
+                fetch('http://localhost:7148/api/totaljourneys')
+                    .then(response => response.json())
+                    .then(data => {
+                        const max = Math.ceil(data / 10); // Assuming 10 items per page
+                        setMaxPage(max);
+                    });
             });
-    }, []); // Note the empty dependency array here.
+    }, [currentPage]); // Note the empty dependency array here.
     const handleStationClick = (station) => {
         setSelectedStation(station);
     };
     useEffect(() => {
         // Fetch the station totals only when selectedStation changes
         if (selectedStation) {
-            fetchDepartureStationTotal(selectedStation.name);
+            fetchDepartureStationTotal(selectedStation.id);
         }
     }, [selectedStation]);
 
@@ -131,6 +141,26 @@ More Details                                </button>
                        
                     </div>
                 ))}
+                <div className="pagination">
+                    <button disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}>Back</button>
+                    {
+                        [...Array(maxPage).keys()].slice(Math.max(currentPage - 2, 0), Math.min(currentPage + 2, maxPage))
+                            .map((_, index, arr) => {
+                                console.log("mapping agin!!");
+                                const pageNum = arr[0] + index + 1;
+                                return (
+                                    <button
+                                        key={pageNum}
+                                        disabled={pageNum === currentPage}
+                                        onClick={() => setCurrentPage(pageNum)}
+                                    >
+                                        {pageNum}
+                                    </button>
+                                );
+                            })
+                    }
+                    <button disabled={currentPage === maxPage} onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
+                </div>
             </div>);
 
     }

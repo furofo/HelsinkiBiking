@@ -14,11 +14,31 @@ using Microsoft.AspNetCore.Mvc;
             _dbManager = dbManager;
         }
 
-    [HttpGet("{stationName}")]  // This defines a route parameter
-    public ActionResult<(int departureCount, int returnCount)> GetDepartureStationTotal(string stationName)
+    [HttpGet("{id}")]
+    public ActionResult<StationTotals> GetDepartureStationTotal(string id)
     {
-        return Ok(_dbManager.GetStationTotals(stationName));
+        // Convert id and fid to integers
+        int parsedId;
+        int parsedFid;
+
+        try
+        {
+            parsedId = int.Parse(id);
+
+        }
+        catch (FormatException)
+        {
+            // Handle the case where parsing fails (e.g., invalid input)
+            return BadRequest("Invalid id or fid");
+        }
+
+        // Now you can use parsedId and parsedFid inside this method.
+        var stationTotals = _dbManager.GetStationTotals(parsedId);
+        Console.WriteLine(stationTotals.DepartureCount);
+        
+        return Ok(stationTotals);
     }
+
 
 
 }

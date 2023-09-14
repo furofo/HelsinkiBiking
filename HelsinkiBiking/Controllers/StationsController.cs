@@ -14,9 +14,11 @@ public class StationsController : ControllerBase
         _dbManager = dbManager;
     }
 
-    [HttpGet]
-    public ActionResult<IEnumerable<Journey>> Get()
+    [HttpGet("{pageNumber}")]
+    public ActionResult<IEnumerable<Journey>> Get(string pageNumber)
     {
-        return Ok(_dbManager.GetStations());
+
+        int pageNumberToInt = int.Parse(pageNumber);
+        return Ok(_dbManager.GetStationsByPage(pageNumberToInt));
     }
 }

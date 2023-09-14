@@ -36,10 +36,10 @@ namespace HelsinkiBiking.Test
            
         };
 
-            mockDbManager.Setup(db => db.GetStations()).Returns(expectedStations);
+            mockDbManager.Setup(db => db.GetStationsByPage(1)).Returns(expectedStations);
 
             // Act
-            var stations = mockDbManager.Object.GetStations();
+            var stations = mockDbManager.Object.GetStationsByPage(1);
 
             // Assert
             Assert.NotNull(stations);
@@ -73,10 +73,10 @@ namespace HelsinkiBiking.Test
             var mockDbManager = new Mock<DatabaseManager>(It.IsAny<string>());
 
             var expectedStations = new List<Station>();
-            mockDbManager.Setup(db => db.GetStations()).Returns(expectedStations);
+            mockDbManager.Setup(db => db.GetStationsByPage(1)).Returns(expectedStations);
 
             // Act
-            var stations = mockDbManager.Object.GetStations();
+            var stations = mockDbManager.Object.GetStationsByPage(1);
 
             // Assert
             Assert.NotNull(stations);
