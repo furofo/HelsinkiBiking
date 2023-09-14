@@ -71,7 +71,7 @@
                 connection.Open();
 
                 // Use the LIMIT and OFFSET clauses to implement pagination
-                string query = $"SELECT * FROM `alljourneys` ORDER BY ReturnDate DESC LIMIT {recordsPerPage} OFFSET {offset}";
+                string query = $"SELECT * FROM `alljourneys` ORDER BY Departure DESC LIMIT {recordsPerPage} OFFSET {offset}";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
