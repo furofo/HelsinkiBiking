@@ -6,7 +6,7 @@ function JourneyListContent() {
 
     useEffect(() => {
         // Assuming your API runs on the same server & port as your React app
-        fetch('http://3.89.210.178:7148/api/journeys')
+        fetch('http://localhost:7148/api/journeys')
             .then(response => {
                 console.log("rist response is ", response);
                return response.json();
