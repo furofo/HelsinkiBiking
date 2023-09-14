@@ -57,10 +57,10 @@ namespace HelsinkiBiking.Test
         new Journey(DateTime.Now, DateTime.Now.AddHours(1), 1, "Station1", 2, "Station2", 10, "1 hour")
     };
 
-            mockDbManager.Setup(db => db.GetAllJourneys()).Returns(expectedJourneys);
+            mockDbManager.Setup(db => db.GetJourneysByPage(1)).Returns(expectedJourneys);
 
             // Act
-            var journeys = mockDbManager.Object.GetAllJourneys();
+            var journeys = mockDbManager.Object.GetJourneysByPage(1);
 
             // Assert
             Assert.NotNull(journeys);

@@ -1,6 +1,7 @@
 ﻿namespace HelsinkiBiking.Database
 {
     using HelsinkiBiking.Models;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
     using MySql.Data.MySqlClient;
     using static System.Collections.Specialized.BitVector32;
 
@@ -57,15 +58,20 @@
             return stations;
         }
 
-        public virtual List<Journey> GetAllJourneys()
+        public virtual List<Journey> GetJourneysByPage(int page)
         {
             List<Journey> journeys = new List<Journey>();
+
+            // Calculate the offset based on the page number and the number of records per page (e.g., 10 per page)
+            int recordsPerPage = 10;
+            int offset = (page - 1) * recordsPerPage;
 
             using (MySqlConnection connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
 
-                string query = "SELECT * FROM `alljourneys` LIMIT 10";
+                // Use the LIMIT and OFFSET clauses to implement pagination
+                string query = $"SELECT * FROM `alljourneys` ORDER BY ReturnDate DESC LIMIT {recordsPerPage} OFFSET {offset}";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -94,8 +100,8 @@
             return journeys;
         }
 
-     
-      
+
+
         public virtual StationTotals GetStationTotals(string stationName)
         {
             int departureCount = 0;

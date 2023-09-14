@@ -17,6 +17,6 @@ public class JourneysController : ControllerBase
     [HttpGet]
     public ActionResult<IEnumerable<Journey>> Get()
     {
-        return Ok(_dbManager.GetAllJourneys());
+        return Ok(_dbManager.GetJourneysByPage(1));
     }
 }
