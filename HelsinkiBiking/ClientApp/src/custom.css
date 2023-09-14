@@ -33,15 +33,18 @@ main {
     align-items: center;
     flex-direction: column;
 }
+
 .index-styling {
     display: flex;
+    font-family: Kanit,sans-serif;
+    font-size: 30px;
     justify-content: center;
+    margin: 50px 10% 0;
     text-align: left;
-    font-size: 50px;
-    font-family: 'Kanit', sans-serif;
     text-align: center;
-    margin: 50px 10% 0px 10%;
 }
+
+
 
 .journey-alternating-border {
     position: relative;
@@ -355,6 +358,15 @@ main {
     width: 100%;
 }
 @media (min-width: 768px) {
+    .index-styling {
+        display: flex;
+        justify-content: center;
+        text-align: left;
+        font-size: 50px;
+        font-family: 'Kanit', sans-serif;
+        text-align: center;
+        margin: 50px 10% 0px 10%;
+    }
     
     .all-stations-list p {
         font-family: 'Alike', serif;
