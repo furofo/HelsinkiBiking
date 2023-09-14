@@ -4,10 +4,17 @@ import rightBike from './images/rightBike.png';
 function JourneyListContent() {
     const [journeys, setJourneys] = useState([]);
     const [journeyCount, setJourneyCount] = useState([]);
-
+    const getJourneysByPageNumber = (pageNumber) => {
+        fetch(`http://localhost:7148/api/journeys/${pageNumber}`)
+            .then(response => response.json())
+            .then(retrievdJourneys => {
+                
+              
+            });
+    };
     useEffect(() => {
         // Assuming your API runs on the same server & port as your React app
-        fetch('http://localhost:7148/api/journeys')
+        fetch('http://localhost:7148/api/journeys/1')
             .then(response => {
                 console.log("rist response is ", response);
                return response.json();

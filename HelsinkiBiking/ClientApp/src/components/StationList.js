@@ -6,8 +6,7 @@ import bicycleWheel from './images/bicycleWheelNoBackground.png';
 
 
 function StationListContent({ selectedStation, setSelectedStation }) {
-    const [stations, setStations] = useState([]);
-    
+    const [stations, setStations] = useState([]);  
     const [departureStationCount, setDepartureStationCount] = useState(null);
     const fetchDepartureStationTotal = (stationName) => {
         fetch(`http://localhost:7148/api/DepartureStationCount/${stationName}`)
