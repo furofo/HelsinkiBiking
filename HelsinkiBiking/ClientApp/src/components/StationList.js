@@ -14,6 +14,7 @@ function StationListContent({ selectedStation, setSelectedStation }) {
     const [departureStationCount, setDepartureStationCount] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [maxPage, setMaxPage] = useState(1);
+    const [isLoading, setIsLoading] = useState(true);
     const fetchDepartureStationTotal = (id) => {
         fetch(`http://localhost:7148/api/DepartureStationCount/${id}`)
             .then(response => {
@@ -41,6 +42,7 @@ function StationListContent({ selectedStation, setSelectedStation }) {
                     .then(data => {
                         const max = Math.ceil(data / 10); // Assuming 10 items per page
                         setMaxPage(max);
+                        setIsLoading(false);
                     });
             });
     }, [currentPage]); // Note the empty dependency array here.
@@ -145,11 +147,13 @@ More Details                                </button>
                        
                     </div>
                 ))}
-                <PaginationList
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                    maxPage={maxPage}
-                />
+                {!isLoading && (
+                    <PaginationList
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
+                        maxPage={maxPage}
+                    />
+                )}
             </div>);
 
     }

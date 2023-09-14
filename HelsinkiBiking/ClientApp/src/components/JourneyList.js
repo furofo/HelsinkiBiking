@@ -7,6 +7,7 @@ function JourneyListContent() {
     const [journeys, setJourneys] = useState([]);
   
     const [currentPage, setCurrentPage] = useState(1);
+    const [isLoading, setIsLoading] = useState(true);
     const [maxPage, setMaxPage] = useState(1);
     useEffect(() => {
         fetch(`http://localhost:7148/api/journeys/${currentPage}`)
@@ -23,6 +24,7 @@ function JourneyListContent() {
                         console.log("data for journey count is ", data);
                         const max = Math.ceil(data / 10); // Assuming 10 items per page
                         setMaxPage(max);
+                        setIsLoading(false);
                     });
             });
     }, [currentPage]);
@@ -72,11 +74,14 @@ function JourneyListContent() {
                     );
                 }
                     )}
-                    <PaginationList
-                        currentPage={currentPage}
-                        setCurrentPage={setCurrentPage}
-                        maxPage={maxPage}
-                    />
+                    {/* Only show PaginationList if not loading */}
+                    {!isLoading && (
+                        <PaginationList
+                            currentPage={currentPage}
+                            setCurrentPage={setCurrentPage}
+                            maxPage={maxPage}
+                        />
+                    )}
 
             </div>
             </div>
