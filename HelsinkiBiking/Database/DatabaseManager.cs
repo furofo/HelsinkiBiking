@@ -141,6 +141,27 @@
         }
 
 
+        public virtual int GetTotalJourneysCount()
+        {
+            int totalJourneysCount = 0;
+
+            using (MySqlConnection connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                // Use the COUNT(*) query to get the total number of journeys
+                string query = "SELECT COUNT(*) FROM `alljourneys`";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    totalJourneysCount = Convert.ToInt32(command.ExecuteScalar());
+                }
+
+                connection.Close();
+            }
+
+            return totalJourneysCount;
+        }
 
 
 
