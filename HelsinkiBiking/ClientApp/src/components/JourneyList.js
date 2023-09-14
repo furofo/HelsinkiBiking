@@ -62,7 +62,7 @@ function JourneyListContent() {
                  
 
                     return (
-                        <div key={journey.id /* assuming there's an id property on journey */} className = "journey-list">
+                        <div key={`Journey${index}`/* assuming there's an id property on journey */} className = "journey-list">
                             <h1>  Journey#{journeyNumber} {formattedDate}</h1>
                             <p>
                                 <span className="lobster-label">Departure Station Name:</span> {journey.departureStationName} <br />

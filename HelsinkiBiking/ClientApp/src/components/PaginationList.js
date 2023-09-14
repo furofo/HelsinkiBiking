@@ -10,7 +10,7 @@ const PaginationList = ({ currentPage, setCurrentPage, maxPage }) => {
                         const pageNum = arr[0] + index + 1;
                         return (
                             <button
-                                key={pageNum}
+                                key = {`Pagination${index + 1}`}
                                 disabled={pageNum === currentPage}
                                 onClick={() => setCurrentPage(pageNum)}
                             >

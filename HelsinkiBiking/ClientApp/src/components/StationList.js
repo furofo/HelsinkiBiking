@@ -58,7 +58,7 @@ function StationListContent({ selectedStation, setSelectedStation }) {
 
     if (selectedStation) {
         return (               
-            <div>
+            <div >
                 <div className="station_details_container">
                     <h1> Station Details</h1>
                     <div className="overlay">
@@ -118,8 +118,8 @@ function StationListContent({ selectedStation, setSelectedStation }) {
     else {
         return (
             <div>
-                {stations.map(station => (
-                    <div>
+                {stations.map((station, index) => (
+                    <div key={`Station${index}`} >
                     <div className = "all-stations-list">
                         <h1>{station.name}</h1>
                             <img src={xMarksSpot} alt="X Marks the Spot" className="x-marks-the-spot" /> 
