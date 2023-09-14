@@ -3,6 +3,7 @@ import leftBike from './images/leftBike.png';
 import rightBike from './images/rightBike.png';
 function JourneyListContent() {
     const [journeys, setJourneys] = useState([]);
+    const [journeyCount, setJourneyCount] = useState([]);
 
     useEffect(() => {
         // Assuming your API runs on the same server & port as your React app
@@ -17,7 +18,18 @@ function JourneyListContent() {
                 console.log("API Data:", data);
                 setJourneys(data);
             });
-    }, []); // Note the empty dependency array here.
+    }, []);
+
+    useEffect(() => {
+        fetch('http://localhost:7148/api/totaljourneys')
+            .then(response => { return response.json(); })
+            .then(data => {
+                console.log("data for jounrey count is ", data);
+                setJourneyCount(data)
+
+            })
+
+    }, []);// Note the empty dependency array here.
 
     return (
         <div>
