@@ -10,7 +10,7 @@ function StationListContent({ selectedStation, setSelectedStation }) {
     
     const [departureStationCount, setDepartureStationCount] = useState(null);
     const fetchDepartureStationTotal = (stationName) => {
-        fetch(`http://localhost:7148/api/DepartureStationCount/${stationName}`)
+        fetch(`http://3.89.210.178:7148/api/DepartureStationCount/${stationName}`)
             .then(response => response.json())
             .then(retrievedCounts => {
                 console.log(`Retrieved Count Values are ${retrievedCounts}`)
@@ -22,7 +22,7 @@ function StationListContent({ selectedStation, setSelectedStation }) {
     };
     useEffect(() => {
         // Assuming your API runs on the same server & port as your React app
-        fetch('http://localhost:7148/api/stations')
+        fetch('http://3.89.210.178:7148/api/stations')
             .then(response => {
                 return response.json();
             })
