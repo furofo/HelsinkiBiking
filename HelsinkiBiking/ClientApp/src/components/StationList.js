@@ -2,6 +2,10 @@ import React, { Component, useState, useEffect } from 'react';
 import xMarksSpot from './images/xmarkspotwithoutbackground.png';
 import locationMap from './images/locatiomapnobackground.png';
 import bicycleWheel from './images/bicycleWheelNoBackground.png';
+import PaginationList from './PaginationList';
+
+
+
 
 
 
@@ -141,26 +145,11 @@ More Details                                </button>
                        
                     </div>
                 ))}
-                <div className="pagination">
-                    <button disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}>Back</button>
-                    {
-                        [...Array(maxPage).keys()].slice(Math.max(currentPage - 2, 0), Math.min(currentPage + 2, maxPage))
-                            .map((_, index, arr) => {
-                                console.log("mapping agin!!");
-                                const pageNum = arr[0] + index + 1;
-                                return (
-                                    <button
-                                        key={pageNum}
-                                        disabled={pageNum === currentPage}
-                                        onClick={() => setCurrentPage(pageNum)}
-                                    >
-                                        {pageNum}
-                                    </button>
-                                );
-                            })
-                    }
-                    <button disabled={currentPage === maxPage} onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
-                </div>
+                <PaginationList
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    maxPage={maxPage}
+                />
             </div>);
 
     }
