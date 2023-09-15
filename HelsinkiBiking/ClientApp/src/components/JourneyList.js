@@ -10,7 +10,7 @@ function JourneyListContent() {
     const [isLoading, setIsLoading] = useState(true);
     const [maxPage, setMaxPage] = useState(1);
     useEffect(() => {
-        fetch(`http://localhost:7148/api/journeys/${currentPage}`)
+        fetch(`https://localhost:7149/api/journeys/${currentPage}`)
             .then(response => {
                 console.log("firs use effect executing here");
                 return response.json()
@@ -18,7 +18,7 @@ function JourneyListContent() {
             .then(data => {
                 console.log("API Data:", data);
                 setJourneys(data);
-                fetch('http://localhost:7148/api/totaljourneys')
+                fetch('https://localhost:7149/api/totaljourneys')
                     .then(response => response.json())
                     .then(data => {
                         console.log("data for journey count is ", data);
@@ -30,7 +30,7 @@ function JourneyListContent() {
     }, [currentPage]);
 
 
-    /*fetch('http://localhost:7148/api/totaljourneys')
+    /*fetch('https://localhost:7149/api/totaljourneys')
         .then(response => response.json())
         .then(data => {
             console.log("data for journey count is ", data);
