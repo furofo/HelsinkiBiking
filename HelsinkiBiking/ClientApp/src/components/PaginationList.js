@@ -1,25 +1,35 @@
 import React from 'react';
+import '../css/pagination.css';
 
 const PaginationList = ({ currentPage, setCurrentPage, maxPage }) => {
     return (
         <div className="pagination">
-            <button disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}>Back</button>
+            <div className="back-button-pagination-div">
+                <button disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}>Back</button>
+            </div>
+           
             {
                 [...Array(maxPage).keys()].slice(Math.max(currentPage - 2, 0), Math.min(currentPage + 2, maxPage))
                     .map((_, index, arr) => {
                         const pageNum = arr[0] + index + 1;
                         return (
-                            <button
-                                key = {`Pagination${index + 1}`}
-                                disabled={pageNum === currentPage}
-                                onClick={() => setCurrentPage(pageNum)}
-                            >
-                                {pageNum}
-                            </button>
+                            <div className="page-number-button-pagination-div">
+                                <button
+                                    key={`Pagination${index + 1}`}
+                                    disabled={pageNum === currentPage}
+                                    onClick={() => setCurrentPage(pageNum)}
+                                >
+                                    {pageNum}
+                                </button>
+                            </div>
+                           
                         );
                     })
             }
-            <button disabled={currentPage === maxPage} onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
+            <div className="next-button-pagination-div">
+                <button disabled={currentPage === maxPage} onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
+            </div>
+           
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink as StrapNavLink } from 'reactstrap';
 import { NavLink as RouterNavLink, Link } from 'react-router-dom';
-import './NavMenu.css';
+import '../css/NavMenu.css';
 import BikeLogo from './images/logos/bikeLogo.png';
 
 //Q: why is this causing activeClassName error
