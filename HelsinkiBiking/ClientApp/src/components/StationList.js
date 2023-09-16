@@ -16,7 +16,7 @@ function StationListContent({ selectedStation, setSelectedStation }) {
     const [maxPage, setMaxPage] = useState(1);
     const [isLoading, setIsLoading] = useState(true);
     const fetchDepartureStationTotal = (id) => {
-        fetch(`https://localhost:7149/api/DepartureStationCount/${id}`)
+        fetch(`/api/DepartureStationCount/${id}`)
             .then(response => {
                 console.log("resonpse is now" + response);
                 return response.json()
@@ -30,14 +30,14 @@ function StationListContent({ selectedStation, setSelectedStation }) {
     };
     useEffect(() => {
         // Assuming your API runs on the same server & port as your React app
-        fetch(`https://localhost:7149/api/stations/${currentPage}`)
+        fetch(`/api/stations/${currentPage}`)
             .then(response => {
                 return response.json();
             })
 
             .then(data => {         
                 setStations(data);
-                fetch('https://localhost:7149/api/totaljourneys')
+                fetch('/api/totaljourneys')
                     .then(response => response.json())
                     .then(data => {
                         const max = Math.ceil(data / 10); // Assuming 10 items per page

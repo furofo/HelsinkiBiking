@@ -10,18 +10,18 @@ function JourneyListContent() {
     const [isLoading, setIsLoading] = useState(true);
     const [maxPage, setMaxPage] = useState(1);
     useEffect(() => {
-        fetch(`https://localhost:7149/api/journeys/${currentPage}`)
+        fetch(`/api/journeys/${currentPage}`)
             .then(response => {
-                console.log("firs use effect executing here");
+                
                 return response.json()
             })
             .then(data => {
-                console.log("API Data:", data);
+                
                 setJourneys(data);
-                fetch('https://localhost:7149/api/totaljourneys')
+                fetch('/api/totaljourneys')
                     .then(response => response.json())
                     .then(data => {
-                        console.log("data for journey count is ", data);
+                     
                         const max = Math.ceil(data / 10); // Assuming 10 items per page
                         setMaxPage(max);
                         setIsLoading(false);
@@ -30,14 +30,7 @@ function JourneyListContent() {
     }, [currentPage]);
 
 
-    /*fetch('https://localhost:7149/api/totaljourneys')
-        .then(response => response.json())
-        .then(data => {
-            console.log("data for journey count is ", data);
-            const max = Math.ceil(data / 10); // Assuming 10 items per page
-            setMaxPage(max);
-        });
-*/
+ 
     return (
         <div>
             <div className="journey-alternating-border ">
