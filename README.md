@@ -1,6 +1,6 @@
 # HelsinkiBiking
 
-This app was made with Visual Studio 2022 Community Edition. It is a C# app that uses .NET Blazor app framework. The Database is a MySQL database and uses React on the front end. 
+This app was made with Visual Studio 2022 Community Edition. It is a C# app that uses .NET Blazor app framework. The Database is a MySQL database and uses React on the front end. It is deployed on AWS server and available at https://helsinkibiking.tech/ on the web. 
 
 
 To configure this project: 
