@@ -18,6 +18,9 @@ function StationListContent({ selectedStation, setSelectedStation }) {
     const fetchDepartureStationTotal = (id) => {
         fetch(`/api/DepartureStationCount/${id}`)
             .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
                 console.log("resonpse is now" + response);
                 return response.json()
             })
@@ -26,26 +29,48 @@ function StationListContent({ selectedStation, setSelectedStation }) {
                 console.log("dpearure count is", retrievedCounts.departureCount);
                 setDepartureStationCount(retrievedCounts);
                 // Do something with the count, maybe set it in the state.
+            }).catch(error => {
+                console.error("Fetch failed:", error);
             });
     };
     useEffect(() => {
-        // Assuming your API runs on the same server & port as your React app
-        fetch(`/api/stations/${currentPage}`)
-            .then(response => {
-                return response.json();
-            })
+        // Define a function to fetch data
+        const fetchData = async () => {
+            let url = `/api/stations/${currentPage}`;
+            let data;
 
-            .then(data => {         
-                setStations(data);
-                fetch('/api/totaljourneys')
-                    .then(response => response.json())
-                    .then(data => {
-                        const max = Math.ceil(data / 10); // Assuming 10 items per page
-                        setMaxPage(max);
-                        setIsLoading(false);
-                    });
-            });
-    }, [currentPage]); // Note the empty dependency array here.
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                data = await response.json();
+            } catch (error) {
+                // If the fetch fails, switch to the local URL
+                url = `https://localhost:44447/api/stations/${currentPage}`;
+                console.log('url is now:', url);
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                data = await response.json();
+            }
+
+            // Update state with fetched data
+            setStations(data);
+
+            // Fetch total journeys
+            const response = await fetch('/api/totaljourneys');
+            const totalJourneys = await response.json();
+            const max = Math.ceil(totalJourneys / 10); // Assuming 10 items per page
+            setMaxPage(max);
+            setIsLoading(false);
+        };
+
+        // Call the fetch function
+        fetchData();
+    }, [currentPage]);
+
     const handleStationClick = (station) => {
         setSelectedStation(station);
     };

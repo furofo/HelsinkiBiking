@@ -1,15 +1,5 @@
 using HelsinkiBiking.Database;
-using MySql.Data.MySqlClient;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using HelsinkiBiking.Database;
-using MySql.Data.MySqlClient;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.DependencyInjection;
+
 
 public class Program
 {
@@ -19,8 +9,7 @@ public class Program
         DotNetEnv.Env.Load();
         string connectionString = System.Environment.GetEnvironmentVariable("ConnectionStrings__HelsinkiDatabase");
 
-        builder.Services.AddSingleton(connectionString);
-        builder.Services.AddSingleton<DatabaseManager>();
+      builder.Services.AddSingleton(x => new DatabaseManager(connectionString));
 
         // Add services to the container.
         builder.Services.AddCors(options =>
